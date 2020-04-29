@@ -35,6 +35,8 @@ class RingBufferArray:
             self.head += 1
         if self._true_size < self.max:
             self._true_size += 1
+        self.head %= self.max
+        self.tail %= self.max
 
     def pop(self):
         if self._true_size:
@@ -45,6 +47,8 @@ class RingBufferArray:
             if self._true_size == 0:
                 self.head = 0
                 self.tail = 0
+            self.head %= self.max
+            self.tail %= self.max
             return val
         else:
             raise IndexError("pop from an empty buffer")
