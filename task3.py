@@ -1,4 +1,4 @@
-def merge(ls1, ls2, res, comp=lambda x, y: x <= y):
+def merge(ls1, ls2, res, comp):
     i = 0
     j = 0
     k = 0
@@ -25,14 +25,14 @@ def merge(ls1, ls2, res, comp=lambda x, y: x <= y):
     return res
 
 
-def merge_sort(ls):
+def merge_sort(ls, comp=lambda x, y: x <= y):
     if len(ls) > 1:
         ls1 = ls[:len(ls) // 2]
         ls2 = ls[len(ls) // 2:]
 
         merge_sort(ls1)
         merge_sort(ls2)
-        merge(ls1, ls2, ls)
+        merge(ls1, ls2, ls, comp)
 
 
 if __name__ == "__main__":
