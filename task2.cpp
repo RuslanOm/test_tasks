@@ -30,6 +30,8 @@ public:
         if (true_size < max_size) {
             true_size++;
         }
+        head %= max_size;
+        tail %= max_size;
     }
 
     T pop() {
@@ -38,13 +40,15 @@ public:
             if (ind < 0)
                 ind = max_size - 1;
             T val = data[ind];
-            data[ind] = -1;
+            data[ind] = NULL;
             head++;
             true_size--;
             if (true_size == 0) {
                 head = 0;
                 tail = 0;
             }
+            head %= max_size;
+            tail %= max_size;
             return val;
         } else {
             throw out_of_range("Pop from empty buffer");
